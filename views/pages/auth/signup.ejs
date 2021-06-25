@@ -1,0 +1,34 @@
+<%- include('../../partials/head.ejs') %>
+
+    <div class="container my-container">
+        <div class="row rounded-3 mt-4">
+            <div class="col-md-6 offset-md-3 bg-light p-4">
+                <form action="/auth/signup" method="POST">
+                    <h4>Create a New Account</h4>
+                    <div class="form-group my-3">
+                        <label for="username">Enter Your User Name ( Must Be Unique)</label>
+                        <input type="text" class="form-control mt-2" id="username" placeholder="HeroAlom52">
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="email">Enter Your Valid Email</label>
+                        <input type="email" class="form-control mt-2" id="email" placeholder="name@gmail.com">
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="password">Enter Your Strong Password</label>
+                        <input type="password" class="form-control mt-2" id="password" placeholder="Yqye4D&5$u">
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="confirmPassword">Confirm Your Password</label>
+                        <input type="password" class="form-control mt-2" id="confirmPassword" placeholder="Yqye4D&5$u">
+                    </div>
+                    <button class="w-100 btn btn-primary mt-1" type="submit">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../../partials/footer.ejs') %>
+
+        </body>
+
+        </html>
