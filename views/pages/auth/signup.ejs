@@ -1,28 +1,51 @@
 <%- include('../../partials/head.ejs') %>
 
     <div class="container my-container">
-        <div class="row rounded-3 mt-4">
-            <div class="col-md-6 offset-md-3 bg-light p-4">
+        <div class="row rounded-3 my-4">
+            <div class="col-md-6 offset-md-3 bg-light px-4 pt-4">
                 <form action="/auth/signup" method="POST">
                     <h4>Create a New Account</h4>
                     <div class="form-group my-3">
                         <label for="username">Enter Your User Name ( Must Be Unique)</label>
-                        <input type="text" class="form-control mt-2" id="username" placeholder="HeroAlom52">
+                        <input type="text" name="username"
+                            class="form-control mt-2 <%= errors.username ? 'is-invalid' : '' %>" id="username"
+                            placeholder="HeroAlom52" value="<%= values.username ? values.username : '' %>">
+                        <div class="invalid-feedback">
+                            <%= errors.username && errors.username %>
+                        </div>
                     </div>
                     <div class="form-group my-3">
                         <label for="email">Enter Your Valid Email</label>
-                        <input type="email" class="form-control mt-2" id="email" placeholder="name@gmail.com">
+                        <input type="email" name="email"
+                            class="form-control mt-2 <%= errors.email ? 'is-invalid' : '' %>" id="email"
+                            placeholder="name@gmail.com" value="<%= values.email ? values.email : '' %>">
+                        <div class="invalid-feedback">
+                            <%= errors.email && errors.email %>
+                        </div>
                     </div>
                     <div class="form-group my-3">
                         <label for="password">Enter Your Strong Password</label>
-                        <input type="password" class="form-control mt-2" id="password" placeholder="Yqye4D&5$u">
+                        <input type="password" name="password"
+                            class="form-control mt-2 <%= errors.password ? 'is-invalid' : '' %>" id="password"
+                            placeholder="Yqye4D&5$u" value="<%= values.password ? values.password : '' %>">
+                        <div class="invalid-feedback">
+                            <%= errors.password && errors.password %>
+                        </div>
                     </div>
                     <div class="form-group my-3">
                         <label for="confirmPassword">Confirm Your Password</label>
-                        <input type="password" class="form-control mt-2" id="confirmPassword" placeholder="Yqye4D&5$u">
+                        <input type="password" name="confirmPassword"
+                            class="form-control mt-2 <%= errors.confirmPassword ? 'is-invalid' : '' %>"
+                            id="confirmPassword" placeholder="Yqye4D&5$u">
+                        <div class="invalid-feedback">
+                            <%= errors.confirmPassword && errors.confirmPassword %>
+                        </div>
                     </div>
                     <button class="w-100 btn btn-primary mt-1" type="submit">Sign Up</button>
                 </form>
+                <div class="my-3 text-center">
+                    <a href="/auth/login" class="my-3 text-center">Already have an Account? Login</a>
+                </div>
             </div>
         </div>
     </div>
