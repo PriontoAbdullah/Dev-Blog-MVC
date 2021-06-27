@@ -7,19 +7,27 @@
                     <h4>Login to Tour Account</h4>
                     <div class="form-group my-3">
                         <label for="email">Enter Your Email</label>
-                        <input type="email" name="email" class="form-control mt-2" id="email"
+                        <input type="email" name="email"
+                            class="form-control mt-2 <%= errors.email ? 'is-invalid' : '' %>" id="email"
                             placeholder="name@gmail.com">
+                        <div class="invalid-feedback" value="<%= values.email ? values.email : '' %>">
+                            <%= errors.email && errors.email %>
+                        </div>
                     </div>
                     <div class="form-group my-3">
                         <label for="password">Enter Your Password</label>
-                        <input type="password" name="password" class="form-control mt-2" id="password"
-                            placeholder="Yqye4D&5$u">
+                        <input type="password" name="password"
+                            class="form-control mt-2 <%= errors.password ? 'is-invalid' : '' %>" id="password"
+                            placeholder="Yqye4D&5$u" value="<%= values.password ? values.password : '' %>">
+                        <div class="invalid-feedback">
+                            <%= errors.password && errors.password %>
+                        </div>
                     </div>
-                    <button class="w-100 btn btn-primary mt-1" type="submit">Sign Up</button>
-                </form>
-                <div class="my-3 text-center">
-                    <a href="/auth/signup" >Don's have any Account? Create One</a>
-                </div>        
+                    <button class="w-100 btn btn-primary mt-1" type="submit">Login</button>
+                    </form>
+                            <div class="my-3 text-center">
+                                <a href="/auth/signup">Don's have any Account? Create One</a>
+                            </div>
             </div>
         </div>
     </div>

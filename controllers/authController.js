@@ -29,7 +29,7 @@ exports.signupPostController = async (req, res, next) => {
 
 		let createdUser = await user.save();
 		console.log('User created successfully', createdUser);
-		res.render('pages/auth/signup', { title: 'Create a new Account' });
+		res.render('pages/auth/signup', { title: 'Create a new Account', errors: {}, values: {} });
 	} catch (err) {
 		console.log(err);
 		next(err);
@@ -37,11 +37,24 @@ exports.signupPostController = async (req, res, next) => {
 };
 
 exports.loginGetController = (req, res, next) => {
-	res.render('pages/auth/login', { title: 'Login to Your Account' });
+	console.log(req.session.isLoggedIn, req.session.user);
+	res.render('pages/auth/login', { title: 'Login to Your Account', errors: {}, values: {} });
 };
 
 exports.loginPostController = async (req, res, next) => {
 	let { email, password } = req.body;
+
+	let errors = validationResult(req).formatWith(validationErrorFormatter);
+	if (!errors.isEmpty()) {
+		return res.render('pages/auth/login', {
+			title: 'Login to Your Account',
+			errors: errors.mapped(),
+			values: {
+				email,
+				password
+			}
+		});
+	}
 
 	try {
 		let user = await User.findOne({ email });
@@ -55,12 +68,28 @@ exports.loginPostController = async (req, res, next) => {
 			return res.json({ message: 'Invalid Credentials' });
 		}
 
-		console.log('User login successfully', user);
-		res.render('pages/auth/login', { title: 'Login to Your Account' });
+		req.session.isLoggedIn = true;
+		req.session.user = user;
+		req.session.save((err) => {
+			if (err) {
+				console.log(err);
+				return next(err);
+			}
+ 
+			res.redirect('/dashboard');
+		});
 	} catch (err) {
 		console.log(err);
 		next(err);
 	}
 };
 
-exports.logoutController = (req, res, next) => {};
+exports.logoutController = (req, res, next) => {
+	req.session.destroy((err) => {
+		if (err) {
+			console.log(err);
+			return next(err);
+		}
+		return res.redirect('/auth/login');
+	});
+};
