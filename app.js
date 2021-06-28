@@ -1,9 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
-require('dotenv').config();
+const flash = require('connect-flash');
 
 // Import Routes
 const authRoutes = require('./routes/authRoute');
@@ -44,7 +45,8 @@ const middleware = [
 		store: store
 	}),
 	bindUserWithRequest(),
-	setLocals()
+	setLocals(),
+	flash()
 ];
 
 app.use(middleware);
@@ -59,6 +61,22 @@ app.get('/', (req, res) => {
 	});
 });
 
+// For Handle 404 & 500 Error Page
+app.use((req, res, next) => {
+	let error = new Error('404 Not Found');
+	error.status = 404;
+	next(error);
+});
+
+app.use((error, req, res, next) => {
+	if (error.status === 404) {
+		return res.render('pages/error/404', { title: '404 Not Found', flashMessage: {} });
+	}
+	console.log(error);
+	res.render('pages/error/500', { title: '500 Internal Server Error!', flashMessage: {} });
+});
+
+// Connect Database
 const PORT = process.env.PORT || 8080;
 mongoose
 	.connect(MONGODB_URI, {
