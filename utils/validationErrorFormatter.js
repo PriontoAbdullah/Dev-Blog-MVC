@@ -1,1 +1,1 @@
-module.exports = (error) => error.msg;
+module.exports = error => error.msg
