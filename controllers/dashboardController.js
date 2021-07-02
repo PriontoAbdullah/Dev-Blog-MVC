@@ -104,6 +104,7 @@ exports.editProfileGetController = async (req, res, next) => {
 		next(e);
 	}
 };
+
 exports.editProfilePostController = async (req, res, next) => {
 	let errors = validationResult(req).formatWith(errorFormatter);
 
