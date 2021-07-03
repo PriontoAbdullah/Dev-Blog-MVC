@@ -2,7 +2,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.min.css">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                <%- include('../../partials/sidebar.ejs') %>
+            </div>
             <div class="col-md-10">
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
@@ -24,11 +26,12 @@
                                 <form action="/dashboard/edit-profile" method="POST">
                                     <div class="form-group">
                                         <label for="name">Enter Your Name</label>
-                                        <input type="text" class="form-control <%= error.name ? 'is-invalid': '' %> " name="name" placeholder="Enter Yor Name"
-                                            id="name" value="<%= profile.name %> ">
-                                            <div class="invalid-feedback">
-                                                <%= error.name %> 
-                                            </div>
+                                        <input type="text" class="form-control <%= error.name ? 'is-invalid': '' %> "
+                                            name="name" placeholder="Enter Yor Name" id="name"
+                                            value="<%= profile.name %> ">
+                                        <div class="invalid-feedback">
+                                            <%= error.name %>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="email">Enter Your Email</label>
@@ -38,19 +41,20 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="title">Enter A Short Title</label>
-                                        <input type="text" class="form-control <%= error.title ? 'is-invalid' : '' %> " name="title"
-                                            placeholder="Enter Yor Title" id="title" value="<%= profile.title %> ">
-                                            <div class="invalid-feedback">
-                                                <%= error.title %> 
-                                            </div>
+                                        <input type="text" class="form-control <%= error.title ? 'is-invalid' : '' %> "
+                                            name="title" placeholder="Enter Yor Title" id="title"
+                                            value="<%= profile.title %> ">
+                                        <div class="invalid-feedback">
+                                            <%= error.title %>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="bio">Enter A Short Bio</label>
-                                        <textarea class="form-control <%= error.bio ? 'is-invalid': '' %> " name="bio" placeholder="Enter Yor Bio"
-                                            id="bio"><%= profile.bio %></textarea>
-                                            <div class="invalid-feedback">
-                                                <%= error.bio %> 
-                                            </div>
+                                        <textarea class="form-control <%= error.bio ? 'is-invalid': '' %> " name="bio"
+                                            placeholder="Enter Yor Bio" id="bio"><%= profile.bio %></textarea>
+                                        <div class="invalid-feedback">
+                                            <%= error.bio %>
+                                        </div>
                                     </div>
                                     <div>
                                         <p class="lead">Your Social Links</p>
@@ -60,16 +64,13 @@
                                                     <i class="fa fa-internet-explorer" aria-hidden="true"></i>
                                                 </span>
                                             </div>
-                                            <input 
-                                            type="text" 
-                                            class="form-control <%= error.website ? 'is-invalid' : '' %> " 
-                                            placeholder="Website Link"       
-                                            name="website" 
-                                            value='<%= profile.links.website %>'
-                                            >
-                                                <div class="invalid-feedback">
-                                                    <%= error.website %> 
-                                                </div>
+                                            <input type="text"
+                                                class="form-control <%= error.website ? 'is-invalid' : '' %> "
+                                                placeholder="Website Link" name="website"
+                                                value='<%= profile.links.website %>'>
+                                            <div class="invalid-feedback">
+                                                <%= error.website %>
+                                            </div>
 
                                         </div>
                                         <div class="input-group mb-3">
@@ -78,15 +79,13 @@
                                                     <i class="fa fa-facebook" aria-hidden="true"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" 
-                                            class="form-control <%= error.facebook ? 'is-invalid' : '' %> " 
-                                            placeholder="Facebook Link"
-                                                name="facebook" 
-                                                value='<%= profile.links.facebook %>'
-                                                >
-                                                <div class="invalid-feedback">
-                                                    <%= error.facebook %> 
-                                                </div>
+                                            <input type="text"
+                                                class="form-control <%= error.facebook ? 'is-invalid' : '' %> "
+                                                placeholder="Facebook Link" name="facebook"
+                                                value='<%= profile.links.facebook %>'>
+                                            <div class="invalid-feedback">
+                                                <%= error.facebook %>
+                                            </div>
                                         </div>
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
@@ -94,11 +93,13 @@
                                                     <i class="fa fa-twitter" aria-hidden="true"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" class="form-control <%= error.twitter ? 'is-invalid' : '' %> " placeholder="Twitter Link"
-                                                name="twitter" value='<%= profile.links.twitter %>'>
-                                                <div class="invalid-feedback">
-                                                    <%= error.twitter %> 
-                                                </div>
+                                            <input type="text"
+                                                class="form-control <%= error.twitter ? 'is-invalid' : '' %> "
+                                                placeholder="Twitter Link" name="twitter"
+                                                value='<%= profile.links.twitter %>'>
+                                            <div class="invalid-feedback">
+                                                <%= error.twitter %>
+                                            </div>
                                         </div>
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
@@ -106,11 +107,13 @@
                                                     <i class="fa fa-github" aria-hidden="true"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" class="form-control <%= error.github ? 'is-invalid': '' %> " placeholder="Github Link"
-                                                name="github" value='<%= profile.links.github %>'>
-                                                <div class="invalid-feedback">
-                                                    <%= error.github %> 
-                                                </div>
+                                            <input type="text"
+                                                class="form-control <%= error.github ? 'is-invalid': '' %> "
+                                                placeholder="Github Link" name="github"
+                                                value='<%= profile.links.github %>'>
+                                            <div class="invalid-feedback">
+                                                <%= error.github %>
+                                            </div>
                                         </div>
                                     </div>
                                     <input type="submit" value="Update Profile" class="btn btn-success">

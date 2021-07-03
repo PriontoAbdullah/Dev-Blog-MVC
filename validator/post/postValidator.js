@@ -7,7 +7,7 @@ module.exports = [
 		.isEmpty()
 		.withMessage('Title Can Not Be Empty')
 		.isLength({ max: 100 })
-		.withMessage("Title Can't be greter than 100 Chars")
+		.withMessage("Title Can't be greater than 100 Chars")
 		.trim(),
 
 	body('body').not().isEmpty().withMessage("Body can't be empty").custom((value) => {
@@ -15,7 +15,7 @@ module.exports = [
 		let text = $node.text();
 
 		if (text.length > 5000) {
-			throw new Error("Body Can't be Greter Than 5000 Chars");
+			throw new Error("Body Can't be Greater Than 5000 Chars");
 		}
 		return true;
 	}),
