@@ -35,7 +35,7 @@ exports.isAdmin = async (req, res, next) => {
 	let user = await User.findById(req.session.user._id);
 	req.user = user;
 	let email = user.email;
-	if (email === 'ariful4082@gmail.com' || 'zakirbreb@gmail.com') {
+	if (email === 'prionto71@gmail.com' || 'priontosoft@gmail.com') {
 		next();
 	} else {
 		res.redirect('/');
