@@ -1,21 +1,73 @@
 <%- include('../../partials/header.ejs', user) %>
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2">
                 <%- include('../../partials/sidebar.ejs') %>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-9 ">
                 <div class="row">
-                    <div class="col-md-8 offset-md-2">
-                        <h2 class="text-center pt-5"> Welcome to Dashboard</h2>
+                    <div class="col-md-12 my-5">
+                        <div class="card card-body mb-4">
+                            <h3>Resent Posts List</h3>
+                            <div class="row ">
+
+                                <% if(posts.length===0){%>
+                                    <div class="text-center text-muted">
+                                        <p>There is no posts available right now</p>
+                                    </div>
+                                    <%}else{%>
+
+                                        <% for(let post of posts){%>
+                                            <div class="col-md-3">
+                                                <div class="card card-body m-3">
+                                                    <img class="img-fluid mb-2" src="<%= post.thumbnail %> " alt="">
+                                                    <a href="/posts/<%= post._id %>"
+                                                        style="text-decoration: none; color: #696969">
+                                                        <h6>
+                                                            <%= post.title %>
+                                                        </h6>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <%} %>
+                                                <%} %>
+                            </div>
+                        </div>
+                        <div class="card card-body">
+                            <h3> Bookmarks Posts List</h3>
+                            <div class="row ">
+
+                                <% if(bookmarks.length===0){%>
+                                    <div class="text-center text-muted mx-3 my-3">
+                                        <p>There is no posts available right now</p>
+                                    </div>
+                                    <%}else{%>
+
+                                        <% for(let post of bookmarks){%>
+                                            <div class="col-md-3">
+                                                <div class="card card-body m-3">
+                                                    <img class="img-fluid mb-2" src="<%= post.thumbnail %> " alt="">
+                                                    <a href="/posts/<%= post._id %>"
+                                                        style="text-decoration: none; color: #696969">
+                                                        <h6>
+                                                            <%= post.title %>
+                                                        </h6>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <%} %>
+                                                <%} %>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <%- include('../../partials/footer.ejs', ) %>
+    <%- include('../../partials/footer.ejs') %>
+
+
 
         </body>
 

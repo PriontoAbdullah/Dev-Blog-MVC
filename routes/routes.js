@@ -45,6 +45,12 @@ const routes = [
 	{
 		path: '/explorer',
 		handler: exploreRoutes
+	},
+	{
+		path: '/',
+		handler: (req, res) => {
+			res.redirect('/explorer');
+		}
 	}
 ];
 

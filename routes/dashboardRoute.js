@@ -1,16 +1,25 @@
 const router = require('express').Router();
-const { dashboardGetController, createProfileGetController, createProfilePostController, editProfileGetController, editProfilePostController } = require('../controllers/dashboardController');
+const {
+	dashboardGetController,
+	createProfileGetController,
+	createProfilePostController,
+	editProfileGetController,
+	editProfilePostController,
+	bookmarksGetController,
+	commentsGetController
+} = require('../controllers/dashboardController');
 const { isAuthenticated } = require('../middleware/authMiddleware');
-const profileValidator = require('../validator/dashboard/profileValidator')
+const profileValidator = require('../validator/dashboard/profileValidator');
 
+router.get('/bookmarks', isAuthenticated, bookmarksGetController);
+router.get('/comment', isAuthenticated, commentsGetController);
 
+router.get('/create-profile', isAuthenticated, createProfileGetController);
+router.post('/create-profile', isAuthenticated, profileValidator, createProfilePostController);
 
-router.get('/', isAuthenticated, dashboardGetController)
+router.get('/edit-profile', isAuthenticated, editProfileGetController);
+router.post('/edit-profile', isAuthenticated, profileValidator, editProfilePostController);
 
-router.get('/create-profile', isAuthenticated, createProfileGetController)
-router.post('/create-profile', isAuthenticated, profileValidator, createProfilePostController)
+router.get('/', isAuthenticated, dashboardGetController);
 
-router.get('/edit-profile', isAuthenticated, editProfileGetController)
-router.post('/edit-profile', isAuthenticated, profileValidator, editProfilePostController)
-
-module.exports = router
+module.exports = router;
