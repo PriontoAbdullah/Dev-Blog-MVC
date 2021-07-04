@@ -23,7 +23,9 @@ exports.bookmarksGetController = async (req, res, next) => {
 			bookmark = true;
 		}
 
-		res.status(200).json({ bookmark });
+		res.status(200).json({
+			bookmark
+		});
 	} catch (e) {
 		console.log(e);
 		return res.status(500).json({

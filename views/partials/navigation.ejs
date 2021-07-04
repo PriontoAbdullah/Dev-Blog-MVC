@@ -1,60 +1,14 @@
-<!-- <header>
-    <div class="container d-flex justify-content-between">
-        <a class="navbar-brand" href="/">Dev Blog MVC</a>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
-</header>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                
-                <% if(isLoggedIn){%>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/dashboard">Dashborad <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/auth/logout">Logout</a>
-                    </li>
-                    <li class="nav-item">
-                        <img src="<%= user.profilePics ? user.profilePics : '' %>  " alt="Photo" class="uploadPic">
-                    </li>
-                    
-                    <%}else{%>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="/auth/login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link  " href="/auth/signup">Signup</a>
-                        </li>
-                        <%} %>
-            </ul>
-            <div>
-            </div>
-        </div>
-    </div>
-</nav> -->
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="/">Dev Blog MVC</a>
+        <a class="navbar-brand" href="/explorer">Dev Blog MVC</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="d-flex mr-auto ">
-                <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+            <form class="form-inline my-2 my-lg-0 mr-auto" method="GET" action="/search">
+                <input class="form-control mr-sm-2" name="term" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
 
             <ul class="navbar-nav mb-2 mb-lg-0">
@@ -68,7 +22,7 @@
                     <li class="nav-item">
                         <img src="<%= user.profilePics ? user.profilePics : '' %>  " alt="Photo" class="uploadPic">
                     </li>
-                    
+
                     <%}else{%>
 
                         <li class="nav-item">
@@ -78,7 +32,7 @@
                             <a class="nav-link  " href="/auth/signup">Signup</a>
                         </li>
                         <%} %>
-            </ul>  
+            </ul>
         </div>
     </div>
 </nav>

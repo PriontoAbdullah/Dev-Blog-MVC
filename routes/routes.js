@@ -2,8 +2,11 @@ const authRoute = require('./authRoute');
 const dashboardRoutes = require('./dashboardRoute');
 const playgroundRoutes = require('../playground/play');
 const uploadRoutes = require('./uploadRoutes');
-const postRoutes = require('./postRoute');
+const postsRoutes = require('./postRoute');
 const apiRoutes = require('../api/routes/apiRoutes');
+const exploreRoutes = require('./exploreRoute');
+const searchRoute = require('./searchRoute');
+const authorRoute = require('./authorRoute');
 
 const routes = [
 	{
@@ -14,14 +17,7 @@ const routes = [
 		path: '/dashboard',
 		handler: dashboardRoutes
 	},
-	{
-		path: '/posts',
-		handler: postRoutes
-	},
-	{
-		path: '/api',
-		handler: apiRoutes
-	},
+
 	{
 		path: '/playground',
 		handler: playgroundRoutes
@@ -31,12 +27,24 @@ const routes = [
 		handler: uploadRoutes
 	},
 	{
-		path: '/',
-		handler: (req, res) => {
-			res.json({
-				message: 'Hello World'
-			});
-		}
+		path: '/posts',
+		handler: postsRoutes
+	},
+	{
+		path: '/search',
+		handler: searchRoute
+	},
+	{
+		path: '/author',
+		handler: authorRoute
+	},
+	{
+		path: '/api',
+		handler: apiRoutes
+	},
+	{
+		path: '/explorer',
+		handler: exploreRoutes
 	}
 ];
 

@@ -1,0 +1,85 @@
+<%- include('../../partials/header.ejs') %>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-10 offset-md-2">
+                <div class="card card-body">
+                    <div>
+                        <img src="<%= author.profilePics %> " class="img-thumbnail img-fluid" alt=""
+                            style="width: 300px">
+                    </div>
+                    <div>
+                        <h5>Name: <Strong>
+                                <%= author.profile.name %>
+                            </Strong></h5>
+                        <h6>Title: <Strong>
+                                <%= author.profile.title %>
+                            </Strong></h6>
+                        <span>Bio: <p>
+                                <%= author.profile.bio %>
+                            </p></span>
+                        <div>
+                            Social Links:
+                            <% if(author.profile.links.website){%>
+                                <span>
+                                    <a href="<%= author.profile.links.website %>" target="_blank">
+                                        <i class="fa fa-internet-explorer" aria-hidden="true"></i>
+                                    </a>
+                                </span>
+                                <%} %>
+                                    <% if(author.profile.links.facebook){%>
+                                        <span>
+                                            <a href="<%= author.profile.links.facebook %>" target="_blank">
+                                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                            </a>
+                                        </span>
+                                        <%} %>
+                                            <% if(author.profile.links.twitter){%>
+                                                <span>
+                                                    <a href="<%= author.profile.links.twitter %>" target="_blank">
+                                                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                                                    </a>
+                                                </span>
+                                                <%} %>
+                                                    <% if(author.profile.links.github){%>
+                                                        <span>
+                                                            <a href="<%= author.profile.links.github %>"
+                                                                target="_blank">
+                                                                <i class="fa fa-github" aria-hidden="true"></i>
+                                                            </a>
+                                                        </span>
+                                                        <%} %>
+                        </div>
+                    </div>
+                    <% if(author.profile.posts){%>
+                        <div class="row p-3">
+                            <% for(let post of author.profile.posts){%>
+                                <div class="col-md-6">
+                                    <div class="card card-body">
+                                        <% if(post.thumbnail) {%>
+                                            <img src="<%= post.thumbnail %> " alt="<%= post.title %> "
+                                                class="img-fluid">
+                                            <%} %>
+                                                <a href="/posts/<%= post._id %> "
+                                                    style="text-decoration: none; color:#696969">
+                                                    <h5>
+                                                        <%= post.title %>
+                                                    </h5>
+                                                </a>
+                                    </div>
+                                </div>
+
+                                <%} %>
+                        </div>
+                        <%} %>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../../partials/footer.ejs') %>
+        <script src="/scripts/bookmarks.js"></script>
+
+        </body>
+
+        </html>

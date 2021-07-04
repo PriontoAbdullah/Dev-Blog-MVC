@@ -3,21 +3,29 @@ const Post = require('../../models/Post');
 exports.likesGetController = async (req, res, next) => {
 	let { postId } = req.params;
 
+	let liked = null;
+
 	if (!req.user) {
 		return res.status(403).json({
-			error: 'You are not an authenticated user'
+			error: `Yor are not an authenticated User`
 		});
 	}
 
 	let userId = req.user._id;
-	let liked = null;
 
 	try {
-		let post = Post.findById(postId);
-		if (post.dislikes.includes(userId)) {
-			await Post.findOneAndUpdate({ _id: postId }, { $pull: { dislikes: userId } });
-		}
+		let post = await Post.findById(postId);
 
+		if (post.dislikes.includes(userId)) {
+			await Post.findOneAndUpdate(
+				{ _id: postId },
+				{
+					$pull: {
+						dislikes: userId
+					}
+				}
+			);
+		}
 		if (post.likes.includes(userId)) {
 			await Post.findOneAndUpdate({ _id: postId }, { $pull: { likes: userId } });
 			liked = false;
@@ -26,7 +34,7 @@ exports.likesGetController = async (req, res, next) => {
 			liked = true;
 		}
 
-		let updatedPost = await Post.findById({ postId });
+		let updatedPost = await Post.findById(postId);
 		res.status(200).json({
 			liked,
 			totalLikes: updatedPost.likes.length,
@@ -34,26 +42,35 @@ exports.likesGetController = async (req, res, next) => {
 		});
 	} catch (e) {
 		console.log(e);
-		return res.status(500).json({ error: 'Server error occurred' });
+		return res.status(500).json({
+			error: 'Server Error Occurred'
+		});
 	}
 };
 
 exports.dislikesGetController = async (req, res, next) => {
 	let { postId } = req.params;
 
-	if (!req.user) {
-		return res.status(403).json({
-			error: 'You are not an authenticated user'
-		});
-	}
-
-	let userId = req.user._id;
 	let disliked = null;
 
+	if (!req.user) {
+		return res.status(403).json({
+			error: `Yor are not an authenticated User`
+		});
+	}
+	let userId = req.user._id;
+
 	try {
-		let post = Post.findById(postId);
+		let post = await Post.findById(postId);
 		if (post.likes.includes(userId)) {
-			await Post.findOneAndUpdate({ _id: postId }, { $pull: { likes: userId } });
+			await Post.findOneAndUpdate(
+				{ _id: postId },
+				{
+					$pull: {
+						likes: userId
+					}
+				}
+			);
 		}
 
 		if (post.dislikes.includes(userId)) {
@@ -64,7 +81,7 @@ exports.dislikesGetController = async (req, res, next) => {
 			disliked = true;
 		}
 
-		let updatedPost = await Post.findById({ postId });
+		let updatedPost = await Post.findById(postId);
 		res.status(200).json({
 			disliked,
 			totalLikes: updatedPost.likes.length,
@@ -72,6 +89,8 @@ exports.dislikesGetController = async (req, res, next) => {
 		});
 	} catch (e) {
 		console.log(e);
-		return res.status(500).json({ error: 'Server error occurred' });
+		return res.status(500).json({
+			error: 'Server Error Occurred'
+		});
 	}
 };
