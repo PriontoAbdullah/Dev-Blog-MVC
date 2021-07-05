@@ -4,7 +4,8 @@
   "main": "app.js",
   "author": "",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "license": "MIT",
   "dependencies": {
@@ -28,5 +29,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
+  },
+  "engines": {
+    "node" : "14.17.0"
   }
 }
